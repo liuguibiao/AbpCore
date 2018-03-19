@@ -1,0 +1,90 @@
+﻿@using Abp.Collections.Extensions
+@using AbpCore.Project.Web.Views
+@using AbpCore.Project.Web.Views.Home.Components.LeftBarNav
+@model LeftBarNavViewModel
+@{
+    var calculateMenuUrl = new Func<string, string>((url) =>
+    {
+        if (string.IsNullOrEmpty(url))
+        {
+            return ApplicationPath;
+        }
+
+        if (UrlChecker.IsRooted(url))
+        {
+            return url;
+        }
+
+        return ApplicationPath + url;
+    });
+}
+<div class="menu">
+    <ul class="list nav" id="side-menu">
+        @foreach (var menuItem in Model.MainMenu.Items)
+        {
+            <li>
+                @if (menuItem.Items.IsNullOrEmpty())
+                {
+                    <a href="@calculateMenuUrl(menuItem.Url)" class="J_menuItem">
+                        @if (!string.IsNullOrWhiteSpace(menuItem.Icon))
+                        {
+                            <i class="@menuItem.Icon"></i>
+                        }
+                        <span class="nav-label">@menuItem.DisplayName</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                }
+                else
+                {
+                    <a class="menu-toggle">
+                        @if (!string.IsNullOrWhiteSpace(menuItem.Icon))
+                        {
+                            <i class="@menuItem.Icon"></i>
+                        }
+                        <span>@menuItem.DisplayName</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        @foreach (var subMenuItem in menuItem.Items)
+                        {
+                            <li>
+                                @if (subMenuItem.Items.IsNullOrEmpty())
+                                {
+                                    <a href="@calculateMenuUrl(subMenuItem.Url)" class="J_menuItem">
+                                        @if (!string.IsNullOrWhiteSpace(subMenuItem.Icon))
+                                        {
+                                            <i class="@subMenuItem.Icon"></i>
+                                        }
+                                        <span>@subMenuItem.DisplayName</span>
+                                        <span class="fa arrow"></span>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="menu-toggle">
+                                        @if (!string.IsNullOrWhiteSpace(subMenuItem.Icon))
+                                        {
+                                            <i class="@subMenuItem.Icon"></i>
+                                        }
+                                        <span>@subMenuItem.DisplayName</span>
+                                        <span class="fa arrow"></span>
+                                    </a>
+                                    <ul class="nav nav-second-level">
+                                        @foreach (var subSubMenuItem in subMenuItem.Items)
+                                        {
+                                            <li>
+                                                <a href="@calculateMenuUrl(subSubMenuItem.Url)" class="J_menuItem">
+                                                    @subSubMenuItem.DisplayName
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+                            </li>
+                        }
+                    </ul>
+                }
+            </li>
+        }
+    </ul>
+</div>

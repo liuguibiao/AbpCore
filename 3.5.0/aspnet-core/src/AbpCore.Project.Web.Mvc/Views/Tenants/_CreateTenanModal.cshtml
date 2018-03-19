@@ -1,0 +1,55 @@
+﻿@using Abp.Authorization.Users
+@using Abp.MultiTenancy
+@using AbpCore.Project.MultiTenancy
+@{
+    Layout = null;
+}
+<div class="modal fade" id="TenantCreateModal" tabindex="-1" role="dialog" aria-labelledby="TenantCreateModalLabel" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form name="tenantCreateForm" role="form" novalidate class="form-validation">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span>@L("CreateNewTenant")</span>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <label class="form-label">@L("TenancyName")</label>
+                            <input class="form-control" type="text" name="TenancyName" required maxlength="@AbpTenantBase.MaxTenancyNameLength" minlength="2">
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <label class="form-label">@L("Name")</label>
+                            <input type="text" name="Name" class="form-control" required maxlength="@Tenant.MaxNameLength">
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <label class="form-label">@L("DatabaseConnectionString") (@L("Optional"))</label>
+                            <input type="text" name="ConnectionString" class="form-control" maxlength="@AbpTenantBase.MaxConnectionStringLength">
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <label class="form-label">@L("AdminEmailAddress")</label>
+                            <input type="email" name="AdminEmailAddress" class="form-control" required maxlength="@AbpUserBase.MaxEmailAddressLength">
+                        </div>
+                    </div>
+                    <div class="">
+                        <label for="isactive" class="form-label">@L("IsActive")</label>
+                        <input type="checkbox" name="IsActive" value="true" id="CreateTenantIsActive" checked />
+                    </div>
+                    <p>@L("DefaultPasswordIs", AbpCore.Project.Authorization.Users.User.DefaultPassword)</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">@L("Cancel")</button>
+                    <button type="submit" class="btn btn-primary waves-effect">@L("Save")</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

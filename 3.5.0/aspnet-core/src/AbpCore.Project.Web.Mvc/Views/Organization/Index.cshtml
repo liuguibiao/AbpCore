@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.CurrentPageName = PageNames.Organization; // The menu item will be active for this page.
+}
+@section styles{
+    <environment names="Development">
+        <link href="~/lib/bootstrap-treeview/src/css/bootstrap-treeview.css" rel="stylesheet" asp-append-version="true" />
+    </environment>
+    <environment names="Staging,Production">
+        <link href="~/lib/bootstrap-treeview/src/css/bootstrap-treeview.min.css" rel="stylesheet" asp-append-version="true" />
+    </environment>
+}
+@section scripts{
+    <environment names="Development">
+        <script src="~/lib/bootstrap-treeview/src/js/bootstrap-treeview.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Views/Organization/Index.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/lib/bootstrap-treeview/src/js/bootstrap-treeview.min.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Views/Organization/Index.min.js" asp-append-version="true"></script>
+    </environment>
+}
+<div class="row" style="padding-left:10px;">
+    <div class="col-sm-4">
+        <div id="toolbar" style="margin:10px 0px 10px 0px;">
+            <button id="btn-add" class="btn btn-primary blue"><i class="fa fa-plus"></i> 新增</button>
+            <button id="btn-del" class="btn btn-primary blue"><i class="fa fa-remove"></i> 删除</button>
+            <button id="btn-edit" class="btn btn-primary blue"><i class="fa fa-edit"></i> 编辑</button>
+        </div>
+        <div id="tree"></div>        
+    </div>
+    <div class="col-sm-8">
+        2
+    </div>
+    
+</div>
+@Html.Partial("~/Views/Organization/_CreateModal.cshtml")

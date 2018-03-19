@@ -1,0 +1,19 @@
+﻿@model AbpCore.Project.Organizations.Dto.OrganizationDto
+@{
+    Layout = "~/Views/Shared/Modals/_ModalBase.cshtml";
+}
+<form name="editForm" role="form" novalidate class="form-validation">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <div class="form-group form-float">
+        <div class="form-line">
+            <label class="form-label">@L("DisplayName")</label>
+            <input class="form-control" type="text" name="DisplayName" value="@Model.DisplayName" required maxlength="128" minlength="2">
+        </div>
+        <div class="form-line">
+            <label class="form-label">@L("ParentDisplayName")</label>
+            <input class="form-control" name="ParentId" type="text" id="selectTree">
+        </div>
+    </div>
+    <input type="hidden" name="Id" class="form-control" value="@Model.Id">
+</form>
+<script src="~/view-resources/Views/Organization/_EditModal.js" asp-append-version="true"></script>

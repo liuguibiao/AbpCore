@@ -1,0 +1,27 @@
+﻿@model Abp.Application.Services.Dto.PagedResultDto<AbpCore.Project.MultiTenancy.Dto.TenantDto>
+@{
+    ViewBag.CurrentPageName = PageNames.Tenants; // The menu item will be active for this page.
+}
+@section styles{
+    @Html.Partial("~/Views/Shared/JsCssModals/bootstrapTableCss.cshtml")
+}
+@section scripts{
+    @Html.Partial("~/Views/Shared/JsCssModals/bootstrapTableJs.cshtml")
+    <environment names="Development">
+        @*<script src="~/js/Common/Component.js" asp-append-version="true"></script>*@
+        <script src="~/view-resources/Views/Tenants/Index.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/view-resources/Views/Tenants/Index.min.js" asp-append-version="true"></script>
+    </environment>
+}
+<div class="col-sm-12">
+    <div class="ibox-content crm-height">
+        <div id="toolbar">
+            <button id="btn-add" class="btn btn-primary blue"><i class="fa fa-plus"></i> 新增</button>
+            <button id="btn-del" class="btn btn-primary blue"><i class="fa fa-remove"></i> 删除</button>
+        </div>
+        <table id="table"></table>
+    </div>
+</div>
+@Html.Partial("~/Views/Tenants/_CreateTenanModal.cshtml")

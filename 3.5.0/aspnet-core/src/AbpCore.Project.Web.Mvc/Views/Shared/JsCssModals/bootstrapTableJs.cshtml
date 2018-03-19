@@ -1,0 +1,12 @@
+﻿@{
+    Layout = null;
+}
+@using System.Globalization
+<environment names="Development">
+    <script src="~/lib/bootstrap-table/src/bootstrap-table.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap-table/src/locale/bootstrap-table-@(CultureInfo.CurrentUICulture.Name).js" asp-append-version="true"></script>
+</environment>
+<environment names="Staging,Production">
+    <script src="~/lib/bootstrap-table/src/bootstrap-table.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap-table/src/locale/bootstrap-table-@(CultureInfo.CurrentUICulture.Name).js" asp-append-version="true"></script>
+</environment>
